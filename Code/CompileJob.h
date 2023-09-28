@@ -9,7 +9,7 @@ class CompileJob : public Job
         std::string output; 
         int returnCode; 
 
-        void execute(); 
+        void execute(std::string); 
         void jobCompleteCallback();  
 
 };

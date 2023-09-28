@@ -1,5 +1,9 @@
 #pragma once 
-
+#include <mutex>
+#include <map>
+#include <deque>
+#include <vector>
+#include <thread>
 class Job 
 {
     friend class JobSystem; 
@@ -20,4 +24,4 @@ class Job
         int m_jobType = -1; 
 
         unsigned long m_jobChannels = 0xFFFFFFFF; 
-}
+};

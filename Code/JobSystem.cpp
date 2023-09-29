@@ -172,7 +172,7 @@ void JobSystem::finishJob(int jobID)
             std::cout << "ERROR: Job #" << jobID << " was status completed but not found in completed lisy" << std::endl;    
         }
 
-        thisCompletedJob->jobCompleteCallback(); 
+        thisCompletedJob->jobsCompleteCallback(); 
 
         m_jobHistoryMutex.lock(); 
         m_jobHistory[thisCompletedJob->m_jobID].m_jobStatus = JOB_STATUS_RETIRED; 

@@ -15,7 +15,7 @@ class Job
             m_jobID = s_nextJobID; 
         }
         virtual ~Job() {}
-        virtual void execute() = 0; 
+        virtual void execute(std::string command) = 0; 
         virtual void jobsCompleteCallback() {}
         int getUniqueID() const {return m_jobID;}
 

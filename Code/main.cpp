@@ -1,6 +1,7 @@
 #include <iostream> 
 #include "JobSystem.h"
 #include "CompileJob.h"
+#include "Job.h"
 
 int main()
 {

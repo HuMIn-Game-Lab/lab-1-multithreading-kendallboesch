@@ -20,8 +20,8 @@ class Job
         int getUniqueID() const {return m_jobID;}
 
     private: 
-        int m_jobID = -1; 
-        int m_jobType = -1; 
+        int m_jobID; 
+        int m_jobType; 
 
-        unsigned long m_jobChannels = 0xFFFFFFFF; 
+        unsigned long m_jobChannels; 
 };

@@ -22,7 +22,10 @@ void JobWorkerThread::workerThreadMain(void *workerThreadObject)
 
 void JobWorkerThread::startUp()
 {
-    m_thread = new std::thread(JobWorkerThread::workerThreadMain, this);
+   // m_thread = new std::thread(JobWorkerThread::workerThreadMain, this);
+    //m_thread = new std::thread(JobWorkerThread::WorkerThreadMain, this); 
+    m_thread = new std::thread(workerThreadMain, this);
+
 }
 
 void JobWorkerThread::work()
@@ -36,7 +39,7 @@ void JobWorkerThread::work()
         Job* job = m_jobSystem->claimJob(m_workerJobChannels); 
         if(job)
         {
-            job->execute();
+            job->execute("make automated");
             m_jobSystem->onJobCompleted(job); 
         }
         std::this_thread::sleep_for(std::chrono::microseconds(1));

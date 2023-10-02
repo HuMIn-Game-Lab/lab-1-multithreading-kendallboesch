@@ -22,4 +22,10 @@ class Job
         int m_jobID; 
         int m_jobType; 
         unsigned long m_jobChannels; 
+
+
+    public:
+        // virtual void execute()  = 0; 
+        // virtual ~Job(){}; 
+
 };

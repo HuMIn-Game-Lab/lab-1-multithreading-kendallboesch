@@ -3,10 +3,11 @@
 #include <string> 
 #include <array> 
 
-CompileJob::CompileJob(unsigned long channel, int jobType, std::string path)
+CompileJob::CompileJob(int jobID, int jobType, std::string path)
 {
-    this->m_jobChannels = channel; 
+    this->m_jobChannels = 0xFFFFFFFF; 
     this->m_jobType = jobType;
+    this->m_jobID = jobID;
     this->command = path; 
 
 }
@@ -22,7 +23,7 @@ void CompileJob::execute()
 
     if(!pipe) 
     {
-        std::cout << "popen filed: failed to open pipe" << std::endl; 
+        std::cerr << "popen filed: failed to open pipe" << std::endl; 
         this->returnCode = 1; // abnormal termination 
         return; 
     }
@@ -35,12 +36,20 @@ void CompileJob::execute()
     this->returnCode = pclose(pipe);
 
     std::cout << "Job " << this->getUniqueID() << " has been executed" << std::endl;
-    this->jobCompleteCallback(); 
-    return; 
-}
-void CompileJob::jobCompleteCallback()
-{
-    std::cout << "in JobCompletreCallback" << std::endl;
+
     std::cout << "Compile job " << this->getUniqueID() << " Return Code: " << this->returnCode << std::endl; 
     std::cout << "Compile job " << this->getUniqueID() << " output : \n" << this->output << std::endl; 
+   // this->jobCompleteCallback(); 
+    return; 
 }
+
+void CompileJob::setID(int id)
+{
+    m_jobID = id;
+}
+// void CompileJob::jobCompleteCallback()
+// {
+//     std::cout << "in JobCompletreCallback" << std::endl;
+//     std::cout << "Compile job " << this->getUniqueID() << " Return Code: " << this->returnCode << std::endl; 
+//     std::cout << "Compile job " << this->getUniqueID() << " output : \n" << this->output << std::endl; 
+// }

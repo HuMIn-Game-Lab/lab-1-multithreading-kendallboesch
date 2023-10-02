@@ -58,7 +58,6 @@ void JobSystem::createWorkerThread(const char* uniqueName, unsigned long workerJ
     m_workerThreadsMutex.lock(); 
     m_workerThreads.push_back(newWorker); 
     m_workerThreadsMutex.unlock(); 
-
     m_workerThreads.back()->startUp(); 
 }
 
@@ -157,7 +156,7 @@ void JobSystem::finishJob(int jobID)
             std::cout << "ERROR: Waiting for Job(#" << jobID <<") - no such job in JobSystem" << std::endl; 
             return;
         }
-
+    
         m_jobsCompletedMutex.lock(); 
         Job* thisCompletedJob = nullptr; 
         for(auto jcItr = m_jobsCompleted.begin(); jcItr != m_jobsCompleted.end(); ++jcItr)
@@ -178,15 +177,22 @@ void JobSystem::finishJob(int jobID)
             std::cout << "ERROR: Job #" << jobID << " was status completed but not found in completed list" << std::endl; 
             return;    
         }
+        else 
+        {
+                    thisCompletedJob->jobCompleteCallback(); 
+
+        }
 
         thisCompletedJob->jobCompleteCallback(); 
 
+    
         m_jobHistoryMutex.lock(); 
         m_jobHistory[thisCompletedJob->m_jobID].m_jobStatus = JOB_STATUS_RETIRED; 
         m_jobHistoryMutex.unlock(); 
 
         delete thisCompletedJob;
     }
+    
 }
 
 void JobSystem::onJobCompleted(Job* justExecuted)
@@ -248,4 +254,9 @@ Job* JobSystem::claimJob(unsigned long workerJobChannels)
     m_jobsQueuedMutex.unlock();
 
     return claimedJob;
+}
+
+std::deque<Job*> JobSystem::getCompletedJobs()
+{
+    return m_jobsCompleted;    
 }

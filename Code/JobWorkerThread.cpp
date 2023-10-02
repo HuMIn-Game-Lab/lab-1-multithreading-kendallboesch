@@ -24,7 +24,7 @@ void JobWorkerThread::workerThreadMain(void *workerThreadObject)
 
 void JobWorkerThread::startUp()
 {
-    std::cout << "in workerthread main" << std::endl;
+    std::cout << "in startUp" << std::endl;
    // m_thread = new std::thread(JobWorkerThread::workerThreadMain, this);
     //m_thread = new std::thread(JobWorkerThread::WorkerThreadMain, this); 
     m_thread = new std::thread(workerThreadMain, this);
@@ -43,11 +43,11 @@ void JobWorkerThread::work()
 
         Job* job = m_jobSystem->claimJob(m_workerJobChannels); 
         if(job)
-        {
+        {   std::cout << "in work if" <<std::endl;
             job->execute();
             m_jobSystem->onJobCompleted(job); 
         }
-       //2 std::this_thread::sleep_for(std::chrono::microseconds(1));
+        std::this_thread::sleep_for(std::chrono::microseconds(4));
     }
 }
 

@@ -52,6 +52,7 @@ class JobSystem
         void finishJob(int jobID); 
         int getJobID(Job* job); 
         void getAllJobInfo(); 
+        std::deque<Job*> getCompletedJobs(); 
 
     private: 
         // Private constructor to prevent external instantiation 

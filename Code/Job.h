@@ -16,7 +16,7 @@ class Job
         // }
         virtual ~Job() {}
         virtual void execute() = 0; 
-        virtual void jobsCompleteCallback() {}
+        virtual void jobCompleteCallback() {}
         int getUniqueID() const {return m_jobID;}
 
         int m_jobID; 

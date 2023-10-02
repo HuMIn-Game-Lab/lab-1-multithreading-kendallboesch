@@ -17,12 +17,14 @@ JobWorkerThread::~JobWorkerThread()
 
 void JobWorkerThread::workerThreadMain(void *workerThreadObject)
 {
+    std::cout << "In workerThreadMain" << std::endl; 
     JobWorkerThread* thisWorker = (JobWorkerThread*) workerThreadObject; 
     thisWorker->work(); 
 }
 
 void JobWorkerThread::startUp()
 {
+    std::cout << "in workerthread main" << std::endl;
    // m_thread = new std::thread(JobWorkerThread::workerThreadMain, this);
     //m_thread = new std::thread(JobWorkerThread::WorkerThreadMain, this); 
     m_thread = new std::thread(workerThreadMain, this);
@@ -32,6 +34,7 @@ void JobWorkerThread::startUp()
 void JobWorkerThread::work()
 {
     std::cout << "in work" << std::endl;
+    std::cout << "Not Stopping: " << !isStopping() << std::endl;
     while(!isStopping())
     {
         m_workerStatusMutex.lock(); 
@@ -44,7 +47,7 @@ void JobWorkerThread::work()
             job->execute();
             m_jobSystem->onJobCompleted(job); 
         }
-       // std::this_thread::sleep_for(std::chrono::microseconds(1));
+       //2 std::this_thread::sleep_for(std::chrono::microseconds(1));
     }
 }
 

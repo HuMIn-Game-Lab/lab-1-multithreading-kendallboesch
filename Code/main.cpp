@@ -22,22 +22,20 @@ int main()
     // }
 
     CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1, "automated");
-    CompileJob* cjb2 = new CompileJob(0xFFFFFFFF, 1, "none");
+    //CompileJob* cjb2 = new CompileJob(0xFFFFFFFF, 1, "none");
     jobs.push_back(cjb); 
-    jobs.push_back(cjb2);
+    // jobs.push_back(cjb2);
 
     std::vector<Job*>::iterator itr = jobs.begin(); 
 
-    for(; itr != jobs.end(); ++itr)
-    {
-        syst->queueJob(*itr); 
-       // std::cout << *itr->jobID;
-    }
+    // for(; itr != jobs.end(); ++itr)
+    // {
+    //     syst->queueJob(*itr); 
+    //    // std::cout << *itr->jobID;
+    // }
 
-
-    
-    std::string prompt; 
-    std::cin >> prompt;
+    syst->queueJob(*itr);
+   
     //syst->getJobStatus(0);
  
     std::cout << "Job Status: " << syst->getJobStatus(0) << std::endl; 

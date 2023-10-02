@@ -3,3 +3,4 @@ compile:
 
 automated: 
 	clang++ -g -std=c++14 ./Code/toCompile/automated.cpp -o auto_out
+	./auto_out

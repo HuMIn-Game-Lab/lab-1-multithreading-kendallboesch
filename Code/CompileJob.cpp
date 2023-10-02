@@ -35,6 +35,8 @@ void CompileJob::execute()
     this->returnCode = pclose(pipe);
 
     std::cout << "Job " << this->getUniqueID() << " has been executed" << std::endl;
+    this->jobCompleteCallback(); 
+    return; 
 }
 void CompileJob::jobCompleteCallback()
 {

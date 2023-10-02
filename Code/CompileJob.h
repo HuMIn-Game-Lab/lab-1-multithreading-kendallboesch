@@ -10,7 +10,7 @@ class CompileJob : public Job
         int returnCode; 
 
         void execute() override; 
-        void jobCompleteCallback();  
+        void jobCompleteCallback() override;  
     
     private: 
         std::string command; 

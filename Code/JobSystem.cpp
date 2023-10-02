@@ -137,7 +137,7 @@ void JobSystem::finishCompletedJobs()
 
     for(Job* job : jobsCompleted)
     {
-        job->jobsCompleteCallback(); 
+        job->jobCompleteCallback(); 
         m_jobHistoryMutex.lock(); 
         m_jobHistory[job->m_jobID].m_jobStatus = JOB_STATUS_RETIRED;
         m_jobHistoryMutex.unlock(); 
@@ -175,10 +175,11 @@ void JobSystem::finishJob(int jobID)
 
         if(thisCompletedJob == nullptr)
         {
-            std::cout << "ERROR: Job #" << jobID << " was status completed but not found in completed lisy" << std::endl;    
+            std::cout << "ERROR: Job #" << jobID << " was status completed but not found in completed list" << std::endl; 
+            return;    
         }
 
-        thisCompletedJob->jobsCompleteCallback(); 
+        thisCompletedJob->jobCompleteCallback(); 
 
         m_jobHistoryMutex.lock(); 
         m_jobHistory[thisCompletedJob->m_jobID].m_jobStatus = JOB_STATUS_RETIRED; 

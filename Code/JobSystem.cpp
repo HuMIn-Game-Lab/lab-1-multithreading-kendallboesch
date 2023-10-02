@@ -243,6 +243,7 @@ void JobSystem::finishJob(int jobID){
             break;
         }
     }
+    m_jobsCompletedMutex.unlock(); 
 }
 // Rest of the code
 void JobSystem::onJobCompleted(Job* jobJustExecuted )

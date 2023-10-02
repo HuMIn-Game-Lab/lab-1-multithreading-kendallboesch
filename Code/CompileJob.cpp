@@ -124,8 +124,8 @@ void CompileJob::execute() {
         //there was an error 
         std::cout << "CompileJob Results: " << res << std::endl; 
        // ParseJob pjb* = new ParseJob(res); 
-       ParseJob* pjb = new ParseJob(0xFFFFFFFF, -1); 
-       pjb->unparsedText = res; 
+      // ParseJob* pjb = new ParseJob(0xFFFFFFFF, -1); 
+       //pjb->unparsedText = res; 
 
        //jobs->push_back(pjb); 
     }

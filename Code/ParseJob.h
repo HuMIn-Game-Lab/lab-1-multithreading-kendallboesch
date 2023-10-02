@@ -1,3 +1,4 @@
+#pragma once
 #include "Job.h"
 #include <unordered_map>
 #include <fstream> 

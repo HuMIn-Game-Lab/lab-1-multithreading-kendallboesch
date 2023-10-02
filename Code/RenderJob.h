@@ -9,5 +9,6 @@ public:
     std::vector<int> data;
     void execute();
     void jobCompleteCallback();
+    std::string showUnparsed();
 };
 

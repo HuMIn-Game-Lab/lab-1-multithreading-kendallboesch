@@ -87,7 +87,7 @@
 // thread will grab cide, compile it, and return the results
 void CompileJob::execute() {
     std::array<char, 128> buffer;
-    std::string command = "make test";
+    std::string command = "make automated";
     //std::string command = "curl -s -X POST -H 'Content-type: application/json' --data "
 
     //Redirect -> redirects cerr to cout ;
@@ -120,10 +120,14 @@ void CompileJob::execute() {
 
     if(returnCode != 0)
     {
+        std::cout << "CJB return code: " << returnCode << std::endl; 
         //there was an error 
         std::cout << "CompileJob Results: " << res << std::endl; 
        // ParseJob pjb* = new ParseJob(res); 
        ParseJob* pjb = new ParseJob(0xFFFFFFFF, -1); 
+       pjb->unparsedText = res; 
+
+       //jobs->push_back(pjb); 
     }
 
     std::cout << "Job " << this->getUniqueID() << " has been executed " << std::endl;

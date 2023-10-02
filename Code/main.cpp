@@ -157,6 +157,8 @@ int main(void ) {
             js->finishJob(0);
             stat = js->getJobStatus(0);
             std::cout << "STATUS: " << stat << std::endl;
+            js->finishJob(0); 
+            std::cout << js->getJobStatus(0) << std::endl; 
             
 //             switch(stat)
 //             {

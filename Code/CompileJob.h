@@ -19,6 +19,7 @@
 
 // };
 #include "Job.h"
+#include "ParseJob.h"
 /*********
  *
  *
@@ -33,6 +34,7 @@ public:
     std::string output;
     int returnCode;
 
+    ParseJob* createError(std::string); 
     void execute();
     void jobCompleteCallback();
 };

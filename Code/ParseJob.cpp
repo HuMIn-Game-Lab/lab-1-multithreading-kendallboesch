@@ -7,7 +7,11 @@
 //     std::cout << "ParseJob Created" << std::endl;  
 //     this->unparsedText = messageIn;
 // }
-
+std::string ParseJob::showUnparsed()
+{
+    std::cout << "Unparsed Compile Job Results: " << unparsedText << std::endl; 
+    return unparsedText; 
+}
 void ParseJob::execute()
 {
     std::istringstream errorStream(this->unparsedText); 

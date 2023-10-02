@@ -69,6 +69,7 @@
 //     std::cout << "Compile job " << this->getUniqueID() << " output : \n" << this->output << std::endl; 
 // }
 #include "CompileJob.h"
+#include "ParseJob.h"
 #include <iostream>
 #include <string>
 #include <array>
@@ -107,13 +108,23 @@ void CompileJob::execute() {
     }
     //capture everything that happens on the screen if my code compiles wothout errors
     // PROF COM: read till end of process
+    std::string res; 
     while(fgets(buffer.data(), 128, pipe) != NULL)
     {
         this->output.append(buffer.data());
+        res.append(buffer.data());
     }
 
     //PC: close pipe & get retyrn code
     this->returnCode = pclose(pipe);    // will return to me what the return code is
+
+    if(returnCode != 0)
+    {
+        //there was an error 
+        std::cout << "CompileJob Results: " << res << std::endl; 
+       // ParseJob pjb* = new ParseJob(res); 
+       ParseJob* pjb = new ParseJob(0xFFFFFFFF, -1); 
+    }
 
     std::cout << "Job " << this->getUniqueID() << " has been executed " << std::endl;
 }

@@ -27,12 +27,11 @@ struct Error
 class ParseJob : public Job 
 {
     public: 
-        ParseJob(int id, std::string unparsedText); 
-        std::string getFile(); 
-        std::string getErrorMessage(); 
+        //ParseJob(std::string unparsedText);  
+        ParseJob(unsigned long jobChannel = 0xFFFFFFFF, int jobType = -1) : Job(jobChannel, jobType) {}; 
+        ~ParseJob(){}; 
         void execute() override; 
-        int getLineNum(); 
-        int getColNum(); 
+    
         std::unordered_map<std::string, std::vector<Error>> jobErrors; 
         std::string unparsedText; 
         int jobId; 

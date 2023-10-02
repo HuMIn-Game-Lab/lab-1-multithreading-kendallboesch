@@ -18,8 +18,8 @@ void ParseJob::execute()
 
     bool reading = true; 
 
-    rapidjson::Document doc; 
-    doc.SetArray(); 
+    // rapidjson::Document doc; 
+    // doc.SetArray(); 
     while(reading)
     {
         Error e;
@@ -32,7 +32,7 @@ void ParseJob::execute()
         e.colNum = std::stoi(colNumStr); 
         std::getline(errorStream, e.errorMessage); 
 
-        reading = false; 
+
         // std::smatch match; 
 
         // if(std::regex_search(lineIn, match, errorPattern) || std::regex_search(lineIn, match, warningPattern))
@@ -47,6 +47,7 @@ void ParseJob::execute()
         {
             this->jobErrors.insert({e.file,{}}); 
         }
-        error_itr->second.push_back(e); 
+        error_itr->second.push_back(e); \
+        reading = false; 
     }
 }

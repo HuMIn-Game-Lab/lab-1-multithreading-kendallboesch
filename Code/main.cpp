@@ -21,7 +21,7 @@ int main()
     //     jobs.push_back(cjb);
     // }
 
-    CompileJob* cjb = new CompileJob(0, 1, "automated");
+    CompileJob* cjb = new CompileJob(1, 1, "automated");
     //CompileJob* cjb2 = new CompileJob(0xFFFFFFFF, 1, "none");
     jobs.push_back(cjb); 
     // jobs.push_back(cjb2);
@@ -38,7 +38,7 @@ int main()
    
     //syst->getJobStatus(0);
  
-    std::cout << "Job Status: " << syst->getJobStatus(0) << std::endl; 
+    std::cout << "Job Status: " << syst->getJobStatus(1) << std::endl; 
 
     syst->finishJob(0);
    // syst->finishCompletedJobs();

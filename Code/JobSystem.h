@@ -56,6 +56,8 @@ class JobSystem
         int getJobID(Job* job); 
         void getAllJobInfo(); 
         std::deque<Job*> getCompletedJobs(); 
+        static int NEXT_ID; 
+
 
     private: 
         // Private constructor to prevent external instantiation 
@@ -67,7 +69,7 @@ class JobSystem
 
         static JobSystem* s_jobSystem; 
 
-        std::vector<JobWorkerThread*> m_workerThreads;
+        std::vector<JobWorkerThread*>   m_workerThreads;
         mutable std::mutex              m_workerThreadsMutex; 
         std::deque< Job*>               m_jobsQueued; 
         std::deque<Job*>                m_jobsRunning;
@@ -79,4 +81,5 @@ class JobSystem
         std::vector<JobHistoryEntry>    m_jobHistory; 
         mutable int                     m_jobHistoryLowestActiveIndex = 0; 
         mutable std::mutex              m_jobHistoryMutex; 
-    };
+        mutable std::mutex              m_nextIDMutex;
+            };

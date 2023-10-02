@@ -44,7 +44,7 @@ void CompileJob::execute()
 
     if(returnCode != 0)
     {
-        //ParseJob *job = new ParseJob(JobSystem::NEXT_JOB_ID,res ); 
+        ParseJob *job = new ParseJob(2,res ); 
     }
     
 

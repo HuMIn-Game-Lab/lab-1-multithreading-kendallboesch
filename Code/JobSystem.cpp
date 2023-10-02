@@ -10,6 +10,7 @@ typedef void (*JobCallback)(Job* completedJob);
 JobSystem::JobSystem()
 {
     static int s_nextID = 0;
+    static int NEXT_ID = 0; 
    // NEXT_JOB_ID = 0;
     m_jobHistory.reserve(256 * 1024); 
 }

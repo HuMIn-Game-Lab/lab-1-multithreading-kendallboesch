@@ -20,6 +20,8 @@ int main()
         jobs.push_back(cjb);
     }
 
+    std::cout << "FINISHED MAIN" << std::endl; 
+
     return 0;
    
 }

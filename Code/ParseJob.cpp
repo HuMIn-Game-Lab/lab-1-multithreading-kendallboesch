@@ -4,6 +4,7 @@
 
 ParseJob::ParseJob(int id, std::string messageIn)
 {
+    std::cout << "ParseJob Created" << std::endl; 
     this->jobId = id; 
     this->unparsedText = messageIn;
 }

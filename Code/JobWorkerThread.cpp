@@ -14,6 +14,10 @@ JobWorkerThread::~JobWorkerThread()
     delete m_thread; 
     m_thread = nullptr;
 }
+void JobWorkerThread::wait()
+{
+    m_thread->join(); 
+}
 
 void JobWorkerThread::workerThreadMain(void *workerThreadObject)
 {
@@ -46,6 +50,7 @@ void JobWorkerThread::work()
         {   std::cout << "in work if" <<std::endl;
             job->execute();
             m_jobSystem->onJobCompleted(job); 
+            //shutDown(); 
         }
         std::this_thread::sleep_for(std::chrono::microseconds(4));
     }

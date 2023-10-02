@@ -39,6 +39,7 @@ int main()
     //syst->getJobStatus(0);
  
     std::cout << "Job Status: " << syst->getJobStatus(1) << std::endl; 
+   // syst->wait(); 
 
     syst->finishJob(0);
    // syst->finishCompletedJobs();

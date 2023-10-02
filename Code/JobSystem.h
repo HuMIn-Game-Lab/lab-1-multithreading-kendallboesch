@@ -44,6 +44,8 @@ class JobSystem
         static void destroy(); 
         int totalJobs = 0;
 
+        void wait(); 
+
         void createWorkerThread(const char* uniqueName, unsigned long workerJobChannel = 0xFFFFFFFF); 
         void destroyWorkerThread(const char* uniqueName); 
         void queueJob(Job* job); 
@@ -82,4 +84,5 @@ class JobSystem
         mutable int                     m_jobHistoryLowestActiveIndex = 0; 
         mutable std::mutex              m_jobHistoryMutex; 
         mutable std::mutex              m_nextIDMutex;
+        bool                            m_stopThreads;
             };

@@ -159,6 +159,22 @@ void JobSystem::finishJob(int jobID)
             std::cout << "ERROR: Waiting for Job(#" << jobID <<") - no such job in JobSystem" << std::endl; 
             return;
         }
+        // else
+        // {
+        //     m_jobsQueuedMutex.lock(); 
+        //     Job* thisQueuedJob = nullptr; 
+        //     for(auto jqItr = m_jobsQueued.begin(); jqItr != m_jobsQueued.end(); ++jqItr)
+        //     {
+        //         Job* someQueuedJob = *jqItr; 
+        //         if(someQueuedJob->m_jobID == jobID)
+        //         {
+        //             thisQueuedJob = someQueuedJob;
+        //             m_jobSystem->onJobCompleted(thisQueuedJob); 
+        //         }
+        //     }
+        //     m_jobsQueuedMutex.unlock();
+        // }
+
     
         m_jobsCompletedMutex.lock(); 
         Job* thisCompletedJob = nullptr; 
@@ -186,7 +202,7 @@ void JobSystem::finishJob(int jobID)
 
         }
 
-        thisCompletedJob->jobCompleteCallback(); 
+       thisCompletedJob->jobCompleteCallback(); 
 
     
         m_jobHistoryMutex.lock(); 
@@ -195,7 +211,13 @@ void JobSystem::finishJob(int jobID)
 
         delete thisCompletedJob;
     }
-    
+}
+void JobSystem::wait()
+{
+    for(auto& thread : m_workerThreads)
+    {
+        thread->wait();
+    }
 }
 
 void JobSystem::onJobCompleted(Job* justExecuted)
@@ -252,6 +274,8 @@ Job* JobSystem::claimJob(unsigned long workerJobChannels)
             break; 
         }
     }
+
+
 
     m_jobsRunningMutex.unlock(); 
     m_jobsQueuedMutex.unlock();

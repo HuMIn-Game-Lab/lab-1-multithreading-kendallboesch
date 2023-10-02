@@ -1,5 +1,6 @@
 #include "JobWorkerThread.h"
 #include "JobSystem.h"
+#include <iostream>
 
 JobWorkerThread::JobWorkerThread(const char * uniqueName, unsigned long workerJobChannel, JobSystem* jobSystem) :
 m_uniqueName(uniqueName), 
@@ -30,6 +31,7 @@ void JobWorkerThread::startUp()
 
 void JobWorkerThread::work()
 {
+    std::cout << "in work" << std::endl;
     while(!isStopping())
     {
         m_workerStatusMutex.lock(); 
@@ -42,7 +44,7 @@ void JobWorkerThread::work()
             job->execute();
             m_jobSystem->onJobCompleted(job); 
         }
-        std::this_thread::sleep_for(std::chrono::microseconds(1));
+       // std::this_thread::sleep_for(std::chrono::microseconds(1));
     }
 }
 

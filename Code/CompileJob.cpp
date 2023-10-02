@@ -8,10 +8,11 @@ CompileJob::CompileJob(unsigned long channel, int jobType, std::string path)
     this->m_jobChannels = channel; 
     this->m_jobType = jobType;
     this->command = path; 
-    
+
 }
 void CompileJob::execute() 
 {
+    std::cout << "in execute" << std::endl;
     std::array<char, 128> buffer; 
     std::string pipeCommand = "make " + this->command; 
 
@@ -33,10 +34,11 @@ void CompileJob::execute()
 
     this->returnCode = pclose(pipe);
 
-    std::cout << "Job " << this->getUniqueID() << "has been executed" << std::endl;
+    std::cout << "Job " << this->getUniqueID() << " has been executed" << std::endl;
 }
 void CompileJob::jobCompleteCallback()
 {
+    std::cout << "in JobCompletreCallback" << std::endl;
     std::cout << "Compile job " << this->getUniqueID() << " Return Code: " << this->returnCode << std::endl; 
     std::cout << "Compile job " << this->getUniqueID() << " output : \n" << this->output << std::endl; 
 }

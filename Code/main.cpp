@@ -9,9 +9,9 @@ int main()
     // JobSystem& syst = JobSystem::getInstance(); 
 
     syst->createWorkerThread("T1", 0xFFFFFFFF);
-    syst->createWorkerThread("T2", 0xFFFFFFFF);
-    syst->createWorkerThread("T3", 0xFFFFFFFF);
-    syst->createWorkerThread("T4", 0xFFFFFFFF);
+    // syst->createWorkerThread("T2", 0xFFFFFFFF);
+    // syst->createWorkerThread("T3", 0xFFFFFFFF);
+    // syst->createWorkerThread("T4", 0xFFFFFFFF);
 
     std::vector<Job*> jobs;
 
@@ -33,8 +33,18 @@ int main()
         syst->queueJob(*itr); 
        // std::cout << *itr->jobID;
     }
+
+
     
-    syst->finishJob(0); 
+    std::string prompt; 
+    std::cin >> prompt;
+    //syst->getJobStatus(0);
+ 
+    std::cout << "Job Status: " << syst->getJobStatus(0) << std::endl; 
+
+    syst->finishJob(0);
+
+    
     std::cout << "FINISHED MAIN" << std::endl; 
 
     return 0;

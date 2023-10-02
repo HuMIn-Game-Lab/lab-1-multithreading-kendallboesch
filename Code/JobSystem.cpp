@@ -89,6 +89,7 @@ void JobSystem::destroyWorkerThread(const char *uniqueName)
 
 void JobSystem::queueJob(Job* job)
 {
+    std::cout << "In queueJob" << std::endl; 
     m_jobHistoryMutex.lock(); 
     m_jobsQueuedMutex.lock(); 
 
@@ -126,6 +127,7 @@ bool JobSystem::isJobComplete(int jobID) const
 
 void JobSystem::finishCompletedJobs()
 {
+    std::cout << " in FinishCOmpletedJobs" << std::endl;
     std::deque<Job*> jobsCompleted; 
 
     m_jobsCompletedMutex.lock(); 
@@ -145,6 +147,7 @@ void JobSystem::finishCompletedJobs()
 
 void JobSystem::finishJob(int jobID)
 {
+    std::cout << "in finishJob" << std::endl;
     while(!isJobComplete(jobID))
     {
         JobStatus status = getJobStatus(jobID);
@@ -187,6 +190,7 @@ void JobSystem::finishJob(int jobID)
 
 void JobSystem::onJobCompleted(Job* justExecuted)
 {
+    std::cout <<"in onJobCompleted" << std::endl; 
     totalJobs++; 
     m_jobsCompletedMutex.lock(); 
     m_jobsRunningMutex.lock(); 
@@ -213,6 +217,7 @@ void JobSystem::onJobCompleted(Job* justExecuted)
 
 Job* JobSystem::claimJob(unsigned long workerJobChannels)
 {
+    std::cout << "in claim Job " << std::endl; 
     m_jobsQueuedMutex.lock(); 
     m_jobsRunningMutex.lock();
 

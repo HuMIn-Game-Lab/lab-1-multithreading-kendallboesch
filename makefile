@@ -8,7 +8,7 @@ automated:
 CXX = clang++ # or the appropriate C++ compiler
 
 # Flags for the C++ compiler
-CXXFLAGS = -std=c++11 -I//Users/kendallboesch/Desktop/CS3341-FoundationsOfModernComputing/Lab-1/lab-1-multithreading-kendallboesch/Code/json-develop/include/nlohmann
+CXXFLAGS += -I//Users/kendallboesch/Desktop/CS3341-FoundationsOfModernComputing/Lab-1/lab-1-multithreading-kendallboesch/Code/json-develop/single_include/nlohmann
 
 # Source files and the output executable
 SRC = ./Code/*.cpp

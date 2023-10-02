@@ -358,7 +358,8 @@ void JobSystem::destroyWorkerThread(const char *uniqueName)
 
     for(; it != m_workerThreads.end(); ++it)
     {
-        if(strcmp((*it)->m_uniqueName, uniqueName) == 0)
+        if((*it)->m_uniqueName == uniqueName)
+       // if(strcmp((*it)->m_uniqueName, uniqueName) == 0)
         {
             worker = *it; 
             m_workerThreads.erase(it); 

@@ -11,6 +11,7 @@ JobSystem::JobSystem()
     m_jobHistory.reserve(256 * 1024); 
 }
 
+
 JobSystem::~JobSystem()
 {
     m_workerThreadsMutex.lock(); 

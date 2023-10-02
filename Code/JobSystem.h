@@ -33,8 +33,9 @@ class JobSystem
     friend class JobWorkerThread; 
 
     public: 
-        JobSystem(); 
+       // JobSystem(); 
         ~JobSystem(); 
+       
 
         static JobSystem* createOrGet(); 
         static void destroy(); 
@@ -53,6 +54,10 @@ class JobSystem
         void getAllJobInfo(); 
 
     private: 
+        // Private constructor to prevent external instantiation 
+        JobSystem();
+       // JobSystem &getInstance();
+
         Job* claimJob(unsigned long workerJobFlags); 
         void onJobCompleted(Job* jobJustExecuted); 
 

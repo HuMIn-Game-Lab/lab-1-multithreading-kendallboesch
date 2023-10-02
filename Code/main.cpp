@@ -6,6 +6,7 @@
 int main()
 {
     JobSystem* syst = JobSystem::createOrGet();
+    // JobSystem& syst = JobSystem::getInstance(); 
 
     syst->createWorkerThread("T1", 0xFFFFFFFF);
     syst->createWorkerThread("T2", 0xFFFFFFFF);

@@ -3,19 +3,26 @@
 #include <string> 
 #include <array> 
 
-
-void CompileJob::execute(std::string com) 
+CompileJob::CompileJob(unsigned long channel, int jobType, std::string path)
+{
+    this->m_jobChannels = channel; 
+    this->m_jobType = jobType;
+    this->command = path; 
+    
+}
+void CompileJob::execute() 
 {
     std::array<char, 128> buffer; 
-    std::string command = com; 
+    std::string pipeCommand = "make " + this->command; 
 
-    command.append(" 2>&1"); 
+    pipeCommand.append(" 2>&1"); 
 
-    FILE* pipe = popen(command.c_str(), "r"); 
+    FILE* pipe = popen(pipeCommand.c_str(), "r"); 
 
     if(!pipe) 
     {
         std::cout << "popen filed: failed to open pipe" << std::endl; 
+        this->returnCode = 1; // abnormal termination 
         return; 
     }
 

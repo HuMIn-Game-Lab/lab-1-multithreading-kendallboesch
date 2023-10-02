@@ -15,12 +15,26 @@ int main()
 
     std::vector<Job*> jobs;
 
-    for( int i = 0; i < 6; i++)
-    {
-        CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
-        jobs.push_back(cjb);
-    }
+    // for( int i = 0; i < 6; i++)
+    // {
+    //     CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1, ""); 
+    //     jobs.push_back(cjb);
+    // }
 
+    CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1, "automated");
+    CompileJob* cjb2 = new CompileJob(0xFFFFFFFF, 1, "none");
+    jobs.push_back(cjb); 
+    jobs.push_back(cjb2);
+
+    std::vector<Job*>::iterator itr = jobs.begin(); 
+
+    for(; itr != jobs.end(); ++itr)
+    {
+        syst->queueJob(*itr); 
+       // std::cout << *itr->jobID;
+    }
+    
+    syst->finishJob(0); 
     std::cout << "FINISHED MAIN" << std::endl; 
 
     return 0;

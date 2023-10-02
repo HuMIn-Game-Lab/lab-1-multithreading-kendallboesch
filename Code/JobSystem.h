@@ -35,7 +35,7 @@ class JobSystem
     public: 
        // JobSystem(); 
         ~JobSystem(); 
-       
+       // static int s_nextID; 
 
         static JobSystem* createOrGet(); 
         static void destroy(); 

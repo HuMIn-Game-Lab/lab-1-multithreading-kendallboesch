@@ -39,7 +39,7 @@ void JobWorkerThread::work()
         Job* job = m_jobSystem->claimJob(m_workerJobChannels); 
         if(job)
         {
-            job->execute("make automated");
+            job->execute();
             m_jobSystem->onJobCompleted(job); 
         }
         std::this_thread::sleep_for(std::chrono::microseconds(1));

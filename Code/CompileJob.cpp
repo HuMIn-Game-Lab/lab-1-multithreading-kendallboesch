@@ -2,6 +2,11 @@
 #include <iostream> 
 #include <string> 
 #include <array> 
+#include "ParseJob.h"
+#include "JobSystem.h"
+#include <atomic>
+
+
 
 CompileJob::CompileJob(int jobID, int jobType, std::string path)
 {
@@ -16,6 +21,7 @@ void CompileJob::execute()
     std::cout << "in execute" << std::endl;
     std::array<char, 128> buffer; 
     std::string pipeCommand = "make " + this->command; 
+    std::string res; 
 
     pipeCommand.append(" 2>&1"); 
 
@@ -31,9 +37,16 @@ void CompileJob::execute()
     while(fgets(buffer.data(), 128, pipe) != NULL)
     {
         this->output.append(buffer.data()); 
+        res+=buffer.data(); 
     }
 
     this->returnCode = pclose(pipe);
+
+    if(returnCode != 0)
+    {
+        //ParseJob *job = new ParseJob(JobSystem::NEXT_JOB_ID,res ); 
+    }
+    
 
     std::cout << "Job " << this->getUniqueID() << " has been executed" << std::endl;
 

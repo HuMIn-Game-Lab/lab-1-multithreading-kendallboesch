@@ -10,7 +10,7 @@
                 "-stdlib=libc++",
                 "-g",
                 "${workspaceFolder}/Code/*.cpp",
-\                "-o",
+                "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
               ],
             "options": {

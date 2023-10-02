@@ -2,6 +2,7 @@
 #include "JobSystem.h"
 #include "JobWorkerThread.h"
 
+ 
 JobSystem* JobSystem::s_jobSystem = nullptr; 
 
 typedef void (*JobCallback)(Job* completedJob); 
@@ -9,6 +10,7 @@ typedef void (*JobCallback)(Job* completedJob);
 JobSystem::JobSystem()
 {
     static int s_nextID = 0;
+   // NEXT_JOB_ID = 0;
     m_jobHistory.reserve(256 * 1024); 
 }
 

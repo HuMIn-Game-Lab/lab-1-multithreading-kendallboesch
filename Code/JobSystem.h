@@ -4,6 +4,7 @@
 #include <deque> 
 #include <thread> 
 
+
 const int JOB_TYPE_ANY = -1;
 
 class JobWorkerThread; 
@@ -33,6 +34,8 @@ class JobSystem
     friend class JobWorkerThread; 
 
     public: 
+       // static std::atomic<unsigned long> NEXT_JOB_ID;
+
        // JobSystem(); 
         ~JobSystem(); 
        // static int s_nextID; 

@@ -14,6 +14,7 @@ public:
 
     std::string output;
     int returnCode;
+    std::string getCompResults();
 
     //ParseJob* createError(std::string); 
     void execute();

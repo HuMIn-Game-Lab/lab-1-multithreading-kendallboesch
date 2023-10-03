@@ -103,7 +103,7 @@ JobWorkerThread::~JobWorkerThread()
 
 void JobWorkerThread::workerThreadMain(void *workerThreadObject)
 {
-     JobWorkerThread* thisWorker = (JobWorkerThread*) workerThreadObject;
+    JobWorkerThread* thisWorker = (JobWorkerThread*) workerThreadObject;
     thisWorker->work();
 }
 
@@ -120,15 +120,14 @@ void JobWorkerThread::work()
     {
         m_workerStatusMutex.lock(); 
         unsigned long workerJobChannels = m_workerJobChannels; 
-        m_workerStatusMutex.unlock(); 
-        
+    m_workerStatusMutex.unlock(); 
+
         Job* job = m_jobSystem->claimJob(m_workerJobChannels);
         if(job)
         {
             job->execute(); 
             m_jobSystem->onJobCompleted(job);   
         }
-
         std::this_thread::sleep_for(std::chrono::microseconds(1)); 
     }
 }

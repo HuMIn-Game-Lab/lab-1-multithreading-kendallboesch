@@ -4,6 +4,7 @@
 
 #include "JobSystem.h"
 #include "RenderJob.h"
+#include "ParseJob.h"
 #include "CompileJob.h"
 
 
@@ -54,84 +55,16 @@ int main(void ) {
     int loop = 0; 
     int running = 1; 
 
-//     // while(running)
-//     // {
-        
-//         std::string command; 
-//         std::cout << "Enter stop, destroy, finish, finishjob, status: ";
-//         std::cin >> command; 
-//         if (loop >= 7)
-//         {
-//             command = "stop";
-//         }
-
-//         std::cout << "INPUT: " << command << std::endl;
-
-//         if(command == "stop")
-//         {
-//             std::cout << "stopping" << std::endl; 
-//             running = 0; 
-//         }
-//         else if(command == "destroy")
-//         {
-//             js->FinishCompletedJobs();
-//             js->Destory(); 
-//             running = 0; 
-//         }
-//         else if(command == "finish")
-//         {
-//            js->FinishCompletedJobs(); 
-//            std::cout << "Total Jobs Completed: " << js->totalJobs << std::endl; 
-
-//         }
-//         else if(command == "finishjob")
-//         {
-
-
-//         }
-//         else if (command == "status")
-//         {
             JobStatus stat = js->getJobStatus(0); 
             std::cout << "Job status " << stat << std::endl; 
             std:: cout << "Finishing Job 0" << std::endl; 
             js->finishJob(0);
+            std::string compres = js->getCompResults(0); 
+            std::cout << "In main: " << compres << std::endl; 
             stat = js->getJobStatus(0);
             std::cout << "STATUS: " << stat << std::endl;
             js->finishJob(0); 
             std::cout << js->getJobStatus(0) << std::endl; 
-            
-//             switch(stat)
-//             {
-//                 case JOB_STATUS_NEVER_SEEN : 
-//                     std::cout << "Never seen" << std::endl;
-//                     break; 
-//                 case JOB_STATUS_QUEUED :
-//                     std::cout << "Queued" << std::endl;
-//                     break; 
-//                 case JOB_STATUS_RUNNING : 
-//                     std::cout << "Running" << std::endl;
-//                     break; 
-//                 case JOB_STATUS_COMPLETED : 
-//                     std::cout << "Completed" << std::endl; 
-//                     break; 
-//                 case JOB_STATUS_RETIRED : 
-//                     std::cout << "Retired" << std::endl; 
-//                     break;
-//                 case NUM_JOB_STATUSES : 
-//                     std::cout << "Num stats??" << std::endl;
-//                     break;
-
-
-//             }
-
-//         }
-//         else 
-//         {
-//             std::cout <<"Invalid command" << std::endl; 
-//         }
-//         loop++; 
-//    // }
-
 
     return 0;
 }

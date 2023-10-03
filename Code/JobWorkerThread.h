@@ -67,10 +67,11 @@ public:
 
 private:
     const char *                 m_uniqueName;
-    unsigned long                m_workerJobChannels = 0xffffffff;
+    unsigned long                m_workerJobChannels = 0xFFFFFFF;
     bool                         m_isStopping = false;
     JobSystem*                   m_jobSystem = nullptr;
     std::thread*                 m_thread = nullptr;
     mutable std::mutex           m_workerStatusMutex;
+    
 
 };

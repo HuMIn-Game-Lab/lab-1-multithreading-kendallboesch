@@ -47,6 +47,7 @@ class JobSystem
 
     //Status queries 
     JobStatus getJobStatus(int jobID) const;
+    std::string getCompResults(int jobID); 
     bool isJobComplete(int jobID) const;
     // TO DO: ASK PROF ABOUT THIS CHANGE 
     void finishCompletedJobs(); 

@@ -47,6 +47,7 @@ public:
         static int s_nextJobID = 0;
         m_jobID = s_nextJobID++;
     }
+    std::string compResults; 
 
     virtual ~Job() {}
     //Virtual = ca

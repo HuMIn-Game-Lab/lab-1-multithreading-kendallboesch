@@ -123,6 +123,7 @@ void CompileJob::execute() {
         std::cout << "CJB return code: " << returnCode << std::endl; 
         //there was an error 
         std::cout << "CompileJob Results: " << res << std::endl; 
+        this->compResults = res; 
        // ParseJob pjb* = new ParseJob(res); 
       // ParseJob* pjb = new ParseJob(0xFFFFFFFF, -1); 
        //pjb->unparsedText = res; 
@@ -132,6 +133,7 @@ void CompileJob::execute() {
 
     std::cout << "Job " << this->getUniqueID() << " has been executed " << std::endl;
 }
+
 
 //have code automatically compile -> hoe could you use somehting like that
     // automated regression testing

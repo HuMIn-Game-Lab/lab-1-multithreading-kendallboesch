@@ -3,12 +3,6 @@
 #include "ParseJob.h"
 #include <string> 
 
-// ParseJob::ParseJob( std::string messageIn)
-// {
-//     std::cout << "ParseJob Created" << std::endl;  
-//     this->unparsedText = messageIn;
-// }
-const std::string NO_TARGET_ERROR = "make: *** No rule to make target `automated'.  Stop.";
 std::string ParseJob::showUnparsed()
 {
     std::cout << "Unparsed Compile Job Results: " << unparsedText << std::endl; 
@@ -22,8 +16,7 @@ void ParseJob::execute()
     bool reading = true; 
     std::string lineIn; 
 
-    // rapidjson::Document doc; 
-    // doc.SetArray(); 
+
     while(getline(errorStream, lineIn))
     {
         std::smatch matcher; 

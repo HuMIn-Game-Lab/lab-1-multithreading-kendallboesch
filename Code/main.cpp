@@ -58,28 +58,9 @@ int main(int argc, char *argv[] )
     int running = 1; 
 
             JobStatus stat = js->getJobStatus(0); 
-           // std::cout << "Job status Job 0: " << stat << std::endl; 
-            //std:: cout << "Finishing Job 0" << std::endl; 
             js->finishJob(0);
-            //stat = js->getJobStatus(0);
-            //std::cout << "Status post finishJob call #0: " << stat << std::endl;
-            //std::cout << "JOB #11 -- Parse Job Status: " << js->getJobStatus(11) << std::endl; 
             js->finishJob(11);
-            //js->finishJob(11);
 
-    // std::regex commandPattern("^clang\\+\\+.*"); // Matches clang++ -g followed by any char
-    // std::regex errorPattern("(.*):(\\d+):(\\d+): (error:)+(.*)"); 
-
-
-    // std::string line1 = "clang++ -g -std=c++14 ./toCompile/demoError.cpp -o error_out";
-    // std::string line2 ="./toCompile/demoError.cpp:3:5: error: use of undeclared identifier 'cout'";
-    // if(std::regex_match(line2, errorPattern))
-    // {
-    //     std::cout << "match" << std::endl; 
-    // }
-    // else{
-    //     std::cout << "no match" << std::endl; 
-    // }
 
      return 0;
 }

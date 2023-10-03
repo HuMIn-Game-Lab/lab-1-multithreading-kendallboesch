@@ -1,40 +1,17 @@
-// #pragma once 
-// #include <mutex>
-// #include <map>
-// #include <deque>
-// #include <vector>
-// #include <thread>
-// class Job 
-// {
-//     friend class JobSystem; 
-//     friend class JobWorkerThread;
-//     public: 
-//         // Job(unsigned long jobChannels = 0xFFFFFFFF, int jobType = -1, std::string path = "make") : m_jobChannels(jobChannels), m_jobType(jobType)
-//         // {
-//         //static int s_nextJobID = 0; 
-//        // m_jobID = s_nextJobID; 
-//         // }
-//         virtual ~Job() {}
-//         virtual void execute() = 0; 
-//         virtual void jobCompleteCallback() {}
-//         int getUniqueID() const {return m_jobID;}
-
-//         int m_jobID; 
-//         int m_jobType; 
-//         unsigned long m_jobChannels; 
-
-
-//     public:
-//         // virtual void execute()  = 0; 
-//         // virtual ~Job(){}; 
-
-// }; 
 #pragma once // What is this? --> prevents circular includes
 #include <mutex>
 #include <map>
 #include <deque>
 #include <vector>
 #include <thread>
+struct Error
+{
+    std::string file; 
+    std::string errorMessage; 
+    int lineNum;
+    int colNum;
+    std::string src; 
+};
 
 class Job{
     friend class JobSystem; //what is friend class
@@ -48,6 +25,7 @@ public:
         m_jobID = s_nextJobID++;
     }
     std::string compResults; 
+    std::map<std::string, std::vector<Error>> errorMap; 
 
     virtual ~Job() {}
     //Virtual = ca

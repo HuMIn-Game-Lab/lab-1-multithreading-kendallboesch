@@ -12,10 +12,10 @@
 
 class JSONJob : public Job
 {
-    JSONJob(unsigned long jobChannel = 0xFFFFFFFF, int jobType = -1) : Job(jobChannel, jobType) {}; 
+    public:
+    JSONJob(unsigned long jobChannel = 0xFFFFFFFF, int jobType = 3) : Job(jobChannel, jobType) {}; 
     ~JSONJob(){}; 
     void execute() override; 
-    std::string toJsonString(std::vector<Error>) const; 
 
     std::string filePath; 
     std::vector<Error> errors; 

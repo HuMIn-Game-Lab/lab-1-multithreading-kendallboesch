@@ -3,14 +3,13 @@
 #include <unordered_map>
 #include <fstream> 
 #include <regex> 
-struct Error
-{
-    std::string file; 
-    std::string errorMessage; 
-    int lineNum;
-    int colNum;
-    std::string src; 
-};
+// {
+//     std::string file; 
+//     std::string errorMessage; 
+//     int lineNum;
+//     int colNum;
+//     std::string src; 
+// };
 class ParseJob : public Job 
 {
     public: 

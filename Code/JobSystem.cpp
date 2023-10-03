@@ -6,6 +6,7 @@
 #include "JobSystem.h" 
 #include "JobWorkerThread.h"
 #include "ParseJob.h"
+#include "JSONJob.h"
 JobSystem* JobSystem::s_jobSystem = nullptr; 
 
 typedef void (*JobCallback)(Job* completedJob);    
@@ -174,6 +175,14 @@ void JobSystem::finishJob(int jobID){
         ParseJob* pjb = new ParseJob(0xFFFFFFFF, 2); 
         pjb->unparsedText = thisCompletedJob->compResults; 
         this->queueJob(pjb); 
+    }
+    else if (thisCompletedJob->m_jobType == 2)      // JobType 2 = parse job
+    {
+        std::cout << "Generating JSONJob for parsed output" << std::endl; 
+        JSONJob* jsjb = new JSONJob(0xFFFFFFFF, 3); 
+        //jsjb->errorMap = thisCompletedJob->jobErrors; 
+
+
     }
 
     

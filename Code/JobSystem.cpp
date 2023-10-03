@@ -162,29 +162,6 @@ void JobSystem::finishJob(int jobID){
             break;
         }
     }
-// Re
-
-// void JobSystem::finishJob(int jobID){
-
-//     // The code after the while loop was within the body of the loop
-//     while(!isJobComplete(jobID)){
-//         JobStatus jobStatus = getJobStatus(jobID);
-//         if((jobStatus == JOB_STATUS_NEVER_SEEN) || (jobStatus == JOB_STATUS_RETIRED)){
-//             std::cout << "Error: Waiting for job (# " << jobID << ") - no such job in JobSystem" << std::endl;
-//             return; 
-//         }
-//     }
-
-//     m_jobsCompletedMutex.lock();
-//     Job* thisCompletedJob = nullptr;
-//     for(auto jcIter = m_jobsCompleted.begin(); jcIter != m_jobsCompleted.end(); ++jcIter){
-//         Job* someCompletedJob = *jcIter;
-//         if(someCompletedJob->m_jobID == jobID){
-//             thisCompletedJob = someCompletedJob;
-//             m_jobsCompleted.erase(jcIter);
-//             break;
-//         }
-//     }
     m_jobsCompletedMutex.unlock(); 
     if(thisCompletedJob == nullptr)
     {
@@ -207,45 +184,6 @@ void JobSystem::finishJob(int jobID){
     m_jobHistoryMutex.unlock();
 
     delete thisCompletedJob;
-}
-std::string JobSystem::getCompResults(int jobID)
-{
-    m_jobsCompletedMutex.lock(); 
-    Job* thisCompiledJob = nullptr; 
-    std::string cr = ""; 
-    auto jcItr = m_jobsCompleted.begin(); 
-    for(; jcItr!= m_jobsCompleted.end(); jcItr++)
-    {
-        Job* someCompiledJob = *jcItr; 
-        if(someCompiledJob->m_jobID == jobID)
-        {
-            thisCompiledJob = someCompiledJob; 
-            cr = thisCompiledJob->compResults; 
-            break; 
-        }
-    }
-    m_jobsCompletedMutex.unlock(); 
-
-    if(cr == "")
-    {
-        m_jobsQueuedMutex.lock(); 
-        Job* thisQdJob = nullptr; 
-        std::string cr = ""; 
-        auto jqItr = m_jobsQueued.begin(); 
-        for(; jqItr!= m_jobsQueued.end(); jqItr++)
-        {
-            Job* someQdJob = *jqItr; 
-            if(someQdJob->m_jobID == jobID)
-            {
-                thisQdJob = someQdJob; 
-                cr = thisQdJob->compResults; 
-                break; 
-            }
-        }
-        m_jobsQueuedMutex.unlock(); 
-
-    }
-    return cr; 
 }
 // Rest of the code
 void JobSystem::onJobCompleted(Job* jobJustExecuted )

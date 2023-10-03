@@ -1,14 +1,16 @@
 
 #include <iostream>
 #include <string> 
-
+#include <regex>
 #include "JobSystem.h"
 #include "RenderJob.h"
 #include "ParseJob.h"
 #include "CompileJob.h"
 
 
-int main(void ) {
+int main(int argc, char *argv[] ) 
+{
+    std::cout << argc << std::endl; 
     std::cout << "Creating Job System" << std::endl;
 
     JobSystem* js = JobSystem::createOrGet(); 
@@ -56,15 +58,28 @@ int main(void ) {
     int running = 1; 
 
             JobStatus stat = js->getJobStatus(0); 
-            std::cout << "Job status " << stat << std::endl; 
-            std:: cout << "Finishing Job 0" << std::endl; 
+           // std::cout << "Job status Job 0: " << stat << std::endl; 
+            //std:: cout << "Finishing Job 0" << std::endl; 
             js->finishJob(0);
-            std::string compres = js->getCompResults(0); 
-            std::cout << "In main: " << compres << std::endl; 
-            stat = js->getJobStatus(0);
-            std::cout << "STATUS: " << stat << std::endl;
-            js->finishJob(0); 
-            std::cout << js->getJobStatus(0) << std::endl; 
+            //stat = js->getJobStatus(0);
+            //std::cout << "Status post finishJob call #0: " << stat << std::endl;
+            //std::cout << "JOB #11 -- Parse Job Status: " << js->getJobStatus(11) << std::endl; 
+            js->finishJob(11);
+            //js->finishJob(11);
 
-    return 0;
+    // std::regex commandPattern("^clang\\+\\+.*"); // Matches clang++ -g followed by any char
+    // std::regex errorPattern("(.*):(\\d+):(\\d+): (error:)+(.*)"); 
+
+
+    // std::string line1 = "clang++ -g -std=c++14 ./toCompile/demoError.cpp -o error_out";
+    // std::string line2 ="./toCompile/demoError.cpp:3:5: error: use of undeclared identifier 'cout'";
+    // if(std::regex_match(line2, errorPattern))
+    // {
+    //     std::cout << "match" << std::endl; 
+    // }
+    // else{
+    //     std::cout << "no match" << std::endl; 
+    // }
+
+     return 0;
 }

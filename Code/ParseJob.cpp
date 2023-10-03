@@ -1,12 +1,14 @@
 #include <iostream> 
 #include <sstream> 
 #include "ParseJob.h"
+#include <string> 
 
 // ParseJob::ParseJob( std::string messageIn)
 // {
 //     std::cout << "ParseJob Created" << std::endl;  
 //     this->unparsedText = messageIn;
 // }
+const std::string NO_TARGET_ERROR = "make: *** No rule to make target `automated'.  Stop.";
 std::string ParseJob::showUnparsed()
 {
     std::cout << "Unparsed Compile Job Results: " << unparsedText << std::endl; 
@@ -14,44 +16,47 @@ std::string ParseJob::showUnparsed()
 }
 void ParseJob::execute()
 {
+    std::regex errorPattern("(.*):(\\d+):(\\d+): (error:|warning:)+(.*)"); 
+ 
     std::istringstream errorStream(this->unparsedText); 
-    char delim = ':';
-    std::string lineIn;
-    std::regex errorPattern("error: (.+) in (.+) at line (\\d+), column (\\d+)");
-    std::regex warningPattern("warning: (.+) in (.+) at line (\\d+), column (\\d+)");
-
     bool reading = true; 
+    std::string lineIn; 
 
     // rapidjson::Document doc; 
     // doc.SetArray(); 
-    while(reading)
+    while(getline(errorStream, lineIn))
     {
-        Error e;
-        std::getline(errorStream, e.file, delim); 
-        std::string lineNumStr; 
-        std::getline(errorStream, lineNumStr, delim); 
-        e.lineNum = std::stoi(lineNumStr); 
-        std::string colNumStr; 
-        std::getline(errorStream, colNumStr, delim); 
-        e.colNum = std::stoi(colNumStr); 
-        std::getline(errorStream, e.errorMessage); 
-
-
-        // std::smatch match; 
-
-        // if(std::regex_search(lineIn, match, errorPattern) || std::regex_search(lineIn, match, warningPattern))
-        // {
-        //     rapidjson::Value errorJson(rapidjson::kObjectType);
-        //     Error e; 
-
-        // }
-
-        auto error_itr = this->jobErrors.find(e.file);
-        if(error_itr == this->jobErrors.end())
+        std::smatch matcher; 
+        if(std::regex_match(lineIn, matcher, errorPattern))
         {
-            this->jobErrors.insert({e.file,{}}); 
+        
+            std::string filePath = matcher[1]; 
+            std::string lineNum_str = matcher[2]; 
+            int line_int = std::stoi(lineNum_str); 
+            std::string colNum_str = matcher[3]; 
+            int col_int = std::stoi(colNum_str); 
+            std::string msg = matcher[4]; 
+            msg.append(matcher[5]); 
+            
+            Error e; 
+            e.file = filePath; 
+            e.lineNum = line_int;  
+            e.colNum = col_int; 
+            e.errorMessage = msg; 
+
+            getline(errorStream, lineIn); 
+            e.src = lineIn; 
+
+            auto error_itr = this->jobErrors.find(e.file); 
+            if(error_itr == this->jobErrors.end())
+            {
+                std::vector<Error> errors; 
+                this->jobErrors.insert({e.file,errors}); 
+            }
+            error_itr = this->jobErrors.find(e.file); 
+            error_itr->second.push_back(e); 
+
         }
-        error_itr->second.push_back(e); \
-        reading = false; 
     }
+
 }

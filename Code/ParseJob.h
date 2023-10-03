@@ -8,7 +8,8 @@ struct Error
     std::string file; 
     std::string errorMessage; 
     int lineNum;
-    int colNum;//
+    int colNum;
+    std::string src; 
 };
 class ParseJob : public Job 
 {

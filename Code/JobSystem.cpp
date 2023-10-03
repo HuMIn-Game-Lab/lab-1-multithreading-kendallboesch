@@ -168,10 +168,10 @@ void JobSystem::finishJob(int jobID){
         std::cout << "ERROR: Job # " << jobID << " was status completed but not found" << std::endl;
     }
 
-    if(thisCompletedJob->compResults != "")
+    if(thisCompletedJob->m_jobType == 1 && thisCompletedJob->compResults != "")    // JobType 1 = compile job 
     {
         std::cout << "getting unparsed compilation results" << std::endl;
-        ParseJob* pjb = new ParseJob(0xFFFFFFFF, 1); 
+        ParseJob* pjb = new ParseJob(0xFFFFFFFF, 2); 
         pjb->unparsedText = thisCompletedJob->compResults; 
         this->queueJob(pjb); 
     }

@@ -37,7 +37,7 @@ int main(int argc, char *argv[] )
 
     for(int j = 0; j < 10; j++)
     {
-        RenderJob* rjb = new RenderJob(0xFFFFFFFF, 1); 
+        RenderJob* rjb = new RenderJob(0xFFFFFFFF, 0); 
         for(int i = 0; i < 1000; i++)
         {
             rjb->data.push_back(i+j); 

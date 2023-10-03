@@ -1,6 +1,7 @@
 #pragma once 
 #include "Job.h"
 #include "ParseJob.h"
+#include <unordered_map>
 
 //#include "rapidjson/document.h"
 #include "/Users/kendallboesch/Desktop/CS3341-FoundationsOfModernComputing/Lab-1/lab-1-multithreading-kendallboesch/Code/rapidjson-master/include/rapidjson/document.h"
@@ -14,8 +15,10 @@ class JSONJob : public Job
     JSONJob(unsigned long jobChannel = 0xFFFFFFFF, int jobType = -1) : Job(jobChannel, jobType) {}; 
     ~JSONJob(){}; 
     void execute() override; 
+    std::string toJsonString(std::vector<Error>) const; 
 
     std::string filePath; 
     std::vector<Error> errors; 
+    std::map<std::string, std::vector<Error>> errorMap; 
 
 }; 

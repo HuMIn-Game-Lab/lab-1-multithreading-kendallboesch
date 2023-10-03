@@ -1,7 +1,12 @@
-// #include "JSONJob.h"
-// #include <iostream> 
-// #include <fstream> 
-// #include <string> 
+#include "JSONJob.h"
+#include <iostream> 
+#include <fstream> 
+#include <string> 
+
+void JSONJob::execute()
+{
+    std::cout << "temp" <<std::endl; 
+}
 // using namespace rapidjson; 
 
 // void JSONJob::execute() 

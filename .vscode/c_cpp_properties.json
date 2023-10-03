@@ -4,7 +4,8 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/Users/kendallboesch/Desktop/CS3341-FoundationsOfModernComputing/Lab-1/lab-1-multithreading-kendallboesch/Code/rapidjson-master/include/*"
+                "${workspaceFolder}/Code/rapidjson/*",
+                "${workspaceFolder}/Code/nlohmann/*"
             ],
             "defines": [],
             "macFrameworkPath": [

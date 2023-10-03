@@ -6,5 +6,9 @@
             "binaryPath": "/Users/kendallboesch/Desktop/CS3341-FoundationsOfModernComputing/Lab-1/lab-1-multithreading-kendallboesch/output",
             "binaryArgs": []
         }
-    ]
+    ],
+    "files.associations": {
+        "*.cpp": "cpp",
+        "__mutex_base": "cpp"
+    }
 }

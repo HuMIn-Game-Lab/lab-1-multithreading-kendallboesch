@@ -5,7 +5,7 @@
 #include <iostream> 
 #include "JobSystem.h" 
 #include "JobWorkerThread.h"
-
+#include "ParseJob.h"
 JobSystem* JobSystem::s_jobSystem = nullptr; 
 
 typedef void (*JobCallback)(Job* completedJob);    
@@ -111,22 +111,6 @@ JobStatus JobSystem::getJobStatus(int jobID) const{
     m_jobHistoryMutex.unlock();
     return jobStatus;
 }
-// JobStatus JobSystem::GetJobStatus(int jobID) const 
-// {
-//     m_jobHistoryMutex.lock(); 
-
-//     // TODO: Check if this is correct implementation 
-//     JobStatus jobStatus = JOB_STATUS_NEVER_SEEN;
-//     std::cout << (int) m_jobHistory.size() << "--------------------------" << std::endl;
-//     if(jobID, (int) m_jobHistory.size())
-//     {
-//         jobStatus = m_jobHistory[jobID].m_jobStatus;
-//     }
-
-//     m_jobHistoryMutex.unlock(); 
-
-//     return jobStatus; 
-// }
 int JobSystem::getJobID(Job* job) 
 {
     return job->m_jobID;
@@ -207,6 +191,14 @@ void JobSystem::finishJob(int jobID){
         std::cout << "ERROR: Job # " << jobID << " was status completed but not found" << std::endl;
     }
 
+    if(thisCompletedJob->compResults != "")
+    {
+        std::cout << "getting unparsed compilation results" << std::endl;
+        ParseJob* pjb = new ParseJob(0xFFFFFFFF, 1); 
+        pjb->unparsedText = thisCompletedJob->compResults; 
+        this->queueJob(pjb); 
+    }
+
     
     thisCompletedJob->jobCompleteCallback();
 
@@ -233,6 +225,26 @@ std::string JobSystem::getCompResults(int jobID)
         }
     }
     m_jobsCompletedMutex.unlock(); 
+
+    if(cr == "")
+    {
+        m_jobsQueuedMutex.lock(); 
+        Job* thisQdJob = nullptr; 
+        std::string cr = ""; 
+        auto jqItr = m_jobsQueued.begin(); 
+        for(; jqItr!= m_jobsQueued.end(); jqItr++)
+        {
+            Job* someQdJob = *jqItr; 
+            if(someQdJob->m_jobID == jobID)
+            {
+                thisQdJob = someQdJob; 
+                cr = thisQdJob->compResults; 
+                break; 
+            }
+        }
+        m_jobsQueuedMutex.unlock(); 
+
+    }
     return cr; 
 }
 // Rest of the code

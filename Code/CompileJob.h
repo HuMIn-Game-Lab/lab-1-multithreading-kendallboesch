@@ -13,10 +13,10 @@ public:
     ~CompileJob() {};
 
     std::string output;
+    std::string target; 
     int returnCode;
-    std::string getCompResults();
 
     //ParseJob* createError(std::string); 
-    void execute();
-    void jobCompleteCallback();
+    void execute() override;
+    void jobCompleteCallback() override; 
 };

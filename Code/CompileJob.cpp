@@ -17,13 +17,15 @@
 // thread will grab cide, compile it, and return the results
 void CompileJob::execute() {
     std::array<char, 128> buffer;
-    std::string command = "make demoError";
+    //std::string command = "make demoError";
+    std::string command = "make "; 
     //std::string command = "curl -s -X POST -H 'Content-type: application/json' --data "
 
     //Redirect -> redirects cerr to cout ;
         //Send everything from cerr to cout
     // so errors are usually output to cerr not cout
     // PC: Redirects cerr to cout
+    command.append(this->target); 
     command.append(" 2>&1");
 
   // basically gives me terminal to work on, but opening this terminal inside a thread

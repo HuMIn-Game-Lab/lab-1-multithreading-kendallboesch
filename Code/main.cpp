@@ -32,6 +32,7 @@ int main(int argc, char *argv[] )
     std::vector<Job*> jobs; 
 
     CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
+    cjb->target = "demoError";
     jobs.push_back(cjb); 
 
 

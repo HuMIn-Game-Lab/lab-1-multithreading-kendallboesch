@@ -180,7 +180,8 @@ void JobSystem::finishJob(int jobID){
     {
         std::cout << "Generating JSONJob for parsed output" << std::endl; 
         JSONJob* jsjb = new JSONJob(0xFFFFFFFF, 3); 
-        jsjb->errorMap = thisCompletedJob->errorMap; 
+        jsjb->errorMap = thisCompletedJob->errorMap;
+        this->queueJob(jsjb);  
     }
 
     

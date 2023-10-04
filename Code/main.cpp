@@ -60,6 +60,7 @@ int main(int argc, char *argv[] )
             JobStatus stat = js->getJobStatus(0); 
             js->finishJob(0);
             js->finishJob(11);
+            js->finishJob(12);
 
 
      return 0;

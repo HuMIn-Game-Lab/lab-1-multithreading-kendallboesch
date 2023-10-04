@@ -1,5 +1,5 @@
 compile: 
-		clang++ -g -std=c++14 Code/CompileJob.cpp Code/JobSystem.cpp Code/JobWorkerThread.cpp Code/RenderJob.cpp Code/main.cpp Code/ParseJob.cpp -o output
+		clang++ -g -std=c++14 Code/CompileJob.cpp Code/JobSystem.cpp Code/JobWorkerThread.cpp Code/RenderJob.cpp Code/main.cpp Code/ParseJob.cpp Code/JSONJob.cpp -o output
 		./output
 
 automated: 

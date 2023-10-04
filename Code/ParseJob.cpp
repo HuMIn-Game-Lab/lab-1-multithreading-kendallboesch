@@ -40,13 +40,13 @@ void ParseJob::execute()
             getline(errorStream, lineIn); 
             e.src = lineIn; 
 
-            auto error_itr = this->jobErrors.find(e.file); 
-            if(error_itr == this->jobErrors.end())
+            auto error_itr = this->errorMap.find(e.file); 
+            if(error_itr == this->errorMap.end())
             {
                 std::vector<Error> errors; 
-                this->jobErrors.insert({e.file,errors}); 
+                this->errorMap.insert({e.file,errors}); 
             }
-            error_itr = this->jobErrors.find(e.file); 
+            error_itr = this->errorMap.find(e.file); 
             error_itr->second.push_back(e); 
 
         }

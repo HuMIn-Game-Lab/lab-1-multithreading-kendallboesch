@@ -32,18 +32,23 @@ int main(int argc, char *argv[] )
     std::vector<Job*> jobs; 
 
     CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
+    cjb->command = "automated";
     jobs.push_back(cjb); 
 
+    CompileJob* cjb2 = new CompileJob(0xFFFFFFFF, 1); 
+    cjb2->command = "demoError"; 
+    jobs.push_back(cjb2); 
 
-    for(int j = 0; j < 10; j++)
-    {
-        RenderJob* rjb = new RenderJob(0xFFFFFFFF, 0); 
-        for(int i = 0; i < 1000; i++)
-        {
-            rjb->data.push_back(i+j); 
-        }
-        jobs.push_back(rjb);
-    }
+
+    // for(int j = 0; j < 10; j++)
+    // {
+    //     RenderJob* rjb = new RenderJob(0xFFFFFFFF, 0); 
+    //     for(int i = 0; i < 1000; i++)
+    //     {
+    //         rjb->data.push_back(i+j); 
+    //     }
+    //     jobs.push_back(rjb);
+    // }
 
 
     std::cout << "Queueing Jobs" << std::endl; 
@@ -57,10 +62,14 @@ int main(int argc, char *argv[] )
     int loop = 0; 
     int running = 1; 
 
-            JobStatus stat = js->getJobStatus(0); 
+
+          
             js->finishJob(0);
-            js->finishJob(11);
-            js->finishJob(12);
+            js->finishJob(1); 
+            js->finishJob(2);
+            js->finishJob(3);
+            js->finishJob(4); 
+            js->finishJob(5);
 
 
      return 0;

@@ -3,13 +3,7 @@
 #include <unordered_map>
 #include <fstream> 
 #include <regex> 
-// {
-//     std::string file; 
-//     std::string errorMessage; 
-//     int lineNum;
-//     int colNum;
-//     std::string src; 
-// };
+
 class ParseJob : public Job 
 {
     public: 

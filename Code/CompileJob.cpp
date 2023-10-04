@@ -17,26 +17,28 @@
 // thread will grab cide, compile it, and return the results
 void CompileJob::execute() {
     std::array<char, 128> buffer;
-    std::string command = "make demoError";
+    std::string target = "make ";
+    //std::string command = "make demoError";
+    target.append(this->command); 
     //std::string command = "curl -s -X POST -H 'Content-type: application/json' --data "
 
     //Redirect -> redirects cerr to cout ;
         //Send everything from cerr to cout
     // so errors are usually output to cerr not cout
     // PC: Redirects cerr to cout
-    command.append(" 2>&1");
+    target.append(" 2>&1");
 
   // basically gives me terminal to work on, but opening this terminal inside a thread
         // everything that happens on that cout will now come back to me on this threstd:ad
     //PC: open pipe and run command
-    FILE* pipe = popen(command.c_str(), "r");
+    FILE* pipe = popen(target.c_str(), "r");
 
     if(!pipe)
     {
         std::cout << "popen failed: failed to open pipe" << std::endl;
         return;
     }
-    //capture everything that happens on the screen if my code compiles wothout errors
+    //capture everything that happens on the screen if my code compiles 
     // PROF COM: read till end of process
     std::string res; 
     while(fgets(buffer.data(), 128, pipe) != NULL)

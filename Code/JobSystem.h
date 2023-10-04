@@ -40,6 +40,7 @@ class JobSystem
     static JobSystem* createOrGet(); 
     static void destroy(); 
     int totalJobs = 0; 
+    int totalJobsComplete; 
 
     void createWorkerThread(const char* unioqueName, unsigned long workerJobChannels = 0xFFFFFFFF); 
     void destroyWorkerThread(const char* uniqueName); 

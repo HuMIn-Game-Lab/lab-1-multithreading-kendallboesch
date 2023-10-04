@@ -40,7 +40,7 @@ private:
     int m_jobID = -1;
     int m_jobType = -1;
     unsigned long m_jobChannels = 0xFFFFFFFF;
-    Job* childJob; 
+    Job* childJob = nullptr;
 };
 
 

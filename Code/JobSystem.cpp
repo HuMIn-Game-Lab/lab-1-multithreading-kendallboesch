@@ -174,6 +174,7 @@ void JobSystem::finishJob(int jobID){
         ParseJob* pjb = new ParseJob(0xFFFFFFFF, 2); 
         pjb->unparsedText = thisCompletedJob->compResults; 
         this->queueJob(pjb); 
+        thisCompletedJob->childJob=pjb; 
     }
     else if (thisCompletedJob->m_jobType == 2)      // JobType 2 = parse job
     {
@@ -181,6 +182,7 @@ void JobSystem::finishJob(int jobID){
         JSONJob* jsjb = new JSONJob(0xFFFFFFFF, 3); 
         jsjb->errorMap = thisCompletedJob->errorMap;
         this->queueJob(jsjb); 
+        thisCompletedJob->childJob = jsjb; 
     }
 
     
@@ -189,6 +191,11 @@ void JobSystem::finishJob(int jobID){
     m_jobHistoryMutex.lock();
     m_jobHistory[thisCompletedJob->m_jobID].m_jobStatus = JOB_STATUS_RETIRED;
     m_jobHistoryMutex.unlock();
+
+    if(thisCompletedJob->childJob != nullptr)
+    {
+        this->finishJob(thisCompletedJob->childJob->m_jobID); 
+    }
 
     delete thisCompletedJob;
 }

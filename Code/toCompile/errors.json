@@ -1,0 +1,20 @@
+{
+  "automated.cpp": [
+    {
+      "errorMessage": "error: expected ';' after expression",
+      "lineNum": 5,
+      "colNum": 49,
+      "src": "    std::cout << \"In automated.cpp\" << std::endl"
+    }
+  ]
+}
+{
+  "automated.cpp": [
+    {
+      "errorMessage": "error: expected ';' after expression",
+      "lineNum": 5,
+      "colNum": 49,
+      "src": "    std::cout << \"In automated.cpp\" << std::endl"
+    }
+  ]
+}

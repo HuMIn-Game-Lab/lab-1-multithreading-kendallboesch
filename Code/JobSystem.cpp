@@ -152,7 +152,6 @@ void JobSystem::finishJob(int jobID){
             return; 
         }
     }
-
     m_jobsCompletedMutex.lock();
     Job* thisCompletedJob = nullptr;
     for(auto jcIter = m_jobsCompleted.begin(); jcIter != m_jobsCompleted.end(); ++jcIter){
@@ -181,7 +180,7 @@ void JobSystem::finishJob(int jobID){
         std::cout << "Generating JSONJob for parsed output" << std::endl; 
         JSONJob* jsjb = new JSONJob(0xFFFFFFFF, 3); 
         jsjb->errorMap = thisCompletedJob->errorMap;
-        this->queueJob(jsjb);  
+        this->queueJob(jsjb); 
     }
 
     

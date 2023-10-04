@@ -16,7 +16,7 @@ void JSONJob::execute()
     for(const auto& error : file.second)
     {
         Value errorObj(kObjectType);
-        errorObj.AddMember("file", Value().SetString(error.file.c_str(), static_cast<SizeType>(error.file.length()), allocator), allocator); 
+       // errorObj.AddMember("file", Value().SetString(error.file.c_str(), static_cast<SizeType>(error.file.length()), allocator), allocator); 
         errorObj.AddMember("errorMessage", Value().SetString(error.errorMessage.c_str(), static_cast<SizeType>(error.errorMessage.length()), allocator), allocator);
         errorObj.AddMember("lineNum", error.lineNum, allocator);
         errorObj.AddMember("colNum", error.colNum, allocator);
@@ -26,7 +26,10 @@ void JSONJob::execute()
     doc.AddMember(Value().SetString(file.first.c_str(), static_cast<SizeType>(file.first.length()), allocator),fileErrorsArray, allocator);
 
     StringBuffer buffer;
-    Writer<StringBuffer> writer(buffer);
+    //Writer<StringBuffer> writer(buffer);
+    PrettyWriter<StringBuffer> writer(buffer); 
+    writer.SetIndent(' ', 2); 
+    writer.SetFormatOptions(PrettyFormatOptions::kFormatDefault);
     doc.Accept(writer);
 
     std::string jsonString = buffer.GetString();

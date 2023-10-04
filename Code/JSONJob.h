@@ -9,6 +9,7 @@
 //#include "/Users/kendallboesch/Desktop/CS3341-FoundationsOfModernComputing/Lab-1/lab-1-multithreading-kendallboesch/Code/include"
 // #include "/Users/kendallboesch/Desktop/CS3341-FoundationsOfModernComputing/Lab-1/lab-1-multithreading-kendallboesch/Code/rapidjson-master/include/rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
+#include "rapidjson/prettywriter.h"
 // #include "/Users/kendallboesch/Desktop/CS3341-FoundationsOfModernComputing/Lab-1/lab-1-multithreading-kendallboesch/Code/rapidjson-master/include/rapidjson/stringbuffer.h"
 
 class JSONJob : public Job

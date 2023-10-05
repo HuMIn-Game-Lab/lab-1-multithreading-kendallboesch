@@ -18,6 +18,8 @@ int main(int argc, char *argv[] )
     //     CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
     // }
     JobSystem* js = JobSystem::createOrGet(); 
+    std::vector<int> jobIds; 
+
 
     std::cout << "Creating worker threads" << std::endl; 
    // js->CreateWorkerThread("Thread0", 0xFFFFFFFF);
@@ -35,9 +37,11 @@ int main(int argc, char *argv[] )
 
     std::vector<Job*> jobs; 
 
+
     CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
     cjb->target = "demoError";
     jobs.push_back(cjb); 
+    jobIds.push_back(cjb->getUniqueID());
 
 
 
@@ -64,8 +68,13 @@ int main(int argc, char *argv[] )
     int loop = 0; 
     int running = 1; 
 
-            JobStatus stat = js->getJobStatus(0); 
-            js->finishJob(0);
+         for(int i = 0; i < jobIds.size(); i++)
+         {
+            std::cout <<"in main loop" << std::endl; 
+            int toFinish = jobIds[i]; 
+            js->finishJob(toFinish); 
+         }
+           // js->finishJob(0);
             // js->finishJob(11);
             // js->finishJob(12);
 

@@ -16,6 +16,7 @@
 
 // thread will grab cide, compile it, and return the results
 void CompileJob::execute() {
+    
     std::array<char, 128> buffer;
     //std::string command = "make demoError";
     std::string command = "make "; 

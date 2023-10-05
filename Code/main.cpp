@@ -13,10 +13,7 @@ int main(int argc, char *argv[] )
     std::cout << argc << std::endl; 
     std::cout << "Creating Job System" << std::endl;
 
-    // for(int i = 1; i < argc; i++)
-    // {
-    //     CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
-    // }
+    
     JobSystem* js = JobSystem::createOrGet(); 
     std::vector<int> jobIds; 
 
@@ -37,16 +34,24 @@ int main(int argc, char *argv[] )
 
     std::vector<Job*> jobs; 
 
+for(int i = 1; i < argc; i++)
+    {
+        CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
+        cjb->target = argv[i]; 
+        jobs.push_back(cjb); 
+        jobIds.push_back(cjb->getUniqueID()); 
+        
+    }
 
-    CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
-    cjb->target = "demoError";
-    jobs.push_back(cjb); 
-    jobIds.push_back(cjb->getUniqueID());
+    // CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
+    // cjb->target = "demoError";
+    // jobs.push_back(cjb); 
+    // jobIds.push_back(cjb->getUniqueID());
 
-    CompileJob* cjb2 = new CompileJob(0xFFFFFFFF, 1); 
-    cjb2->target = "automated"; 
-    jobs.push_back(cjb2); 
-    jobIds.push_back(cjb2->getUniqueID()); 
+    // CompileJob* cjb2 = new CompileJob(0xFFFFFFFF, 1); 
+    // cjb2->target = "automated"; 
+    // jobs.push_back(cjb2); 
+    // jobIds.push_back(cjb2->getUniqueID()); 
 
 
 

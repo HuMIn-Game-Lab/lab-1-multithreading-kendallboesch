@@ -1,0 +1,16 @@
+{
+  "demoError.cpp": [
+    {
+      "errorMessage": "error: use of undeclared identifier 'cout'",
+      "lineNum": 3,
+      "colNum": 5,
+      "src": "    cout << \"fail\" << endl; "
+    },
+    {
+      "errorMessage": "error: use of undeclared identifier 'endl'",
+      "lineNum": 3,
+      "colNum": 23,
+      "src": "    cout << \"fail\" << endl; "
+    }
+  ]
+}

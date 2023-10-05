@@ -13,6 +13,10 @@ int main(int argc, char *argv[] )
     std::cout << argc << std::endl; 
     std::cout << "Creating Job System" << std::endl;
 
+    // for(int i = 1; i < argc; i++)
+    // {
+    //     CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
+    // }
     JobSystem* js = JobSystem::createOrGet(); 
 
     std::cout << "Creating worker threads" << std::endl; 
@@ -36,15 +40,17 @@ int main(int argc, char *argv[] )
     jobs.push_back(cjb); 
 
 
-    for(int j = 0; j < 10; j++)
-    {
-        RenderJob* rjb = new RenderJob(0xFFFFFFFF, 0); 
-        for(int i = 0; i < 1000; i++)
-        {
-            rjb->data.push_back(i+j); 
-        }
-        jobs.push_back(rjb);
-    }
+
+
+    // for(int j = 0; j < 10; j++)
+    // {
+    //     RenderJob* rjb = new RenderJob(0xFFFFFFFF, 0); 
+    //     for(int i = 0; i < 1000; i++)
+    //     {
+    //         rjb->data.push_back(i+j); 
+    //     }
+    //     jobs.push_back(rjb);
+    // }
 
 
     std::cout << "Queueing Jobs" << std::endl; 

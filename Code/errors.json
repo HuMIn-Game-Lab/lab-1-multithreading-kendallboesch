@@ -1,4 +1,14 @@
 {
+  "./toCompile/automated.cpp": [
+    {
+      "errorMessage": "error: expected ';' after expression",
+      "lineNum": 5,
+      "colNum": 49,
+      "src": "    std::cout << \"In automated.cpp\" << std::endl"
+    }
+  ]
+}
+{
   "./toCompile/demoError.cpp": [
     {
       "errorMessage": "error: use of undeclared identifier 'cout'",
@@ -11,6 +21,16 @@
       "lineNum": 3,
       "colNum": 23,
       "src": "    cout << \"fail\" << endl; "
+    }
+  ]
+}
+{
+  "./toCompile/automated.cpp": [
+    {
+      "errorMessage": "error: expected ';' after expression",
+      "lineNum": 5,
+      "colNum": 49,
+      "src": "    std::cout << \"In automated.cpp\" << std::endl"
     }
   ]
 }

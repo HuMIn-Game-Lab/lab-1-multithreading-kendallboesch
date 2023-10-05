@@ -43,6 +43,11 @@ int main(int argc, char *argv[] )
     jobs.push_back(cjb); 
     jobIds.push_back(cjb->getUniqueID());
 
+    CompileJob* cjb2 = new CompileJob(0xFFFFFFFF, 1); 
+    cjb2->target = "automated"; 
+    jobs.push_back(cjb2); 
+    jobIds.push_back(cjb2->getUniqueID()); 
+
 
 
 

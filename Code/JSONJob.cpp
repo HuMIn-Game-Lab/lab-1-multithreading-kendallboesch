@@ -34,7 +34,7 @@ void JSONJob::execute()
 
     std::string jsonString = buffer.GetString();
 
-    std::ofstream outputFile("errors.json");
+    std::ofstream outputFile("errors.json", std::ios::app);
     if (outputFile.is_open()) {
         outputFile << jsonString << std::endl;
         outputFile.close();

@@ -18,7 +18,7 @@ class ParseJob : public Job
         ~ParseJob(){}; 
         void execute() override; 
         std::string showUnparsed();
-        void jobCompleteCallback() override; 
+        //void jobCompleteCallback() override; 
 
     
         std::unordered_map<std::string, std::vector<Error>> jobErrors; 

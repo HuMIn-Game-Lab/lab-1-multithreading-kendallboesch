@@ -25,7 +25,7 @@ public:
         m_jobID = s_nextJobID++;
     }
     std::string compResults; 
-    std::string target; 
+   // std::string target; 
     std::map<std::string, std::vector<Error>> errorMap; 
 
     virtual ~Job() {}

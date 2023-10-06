@@ -53,15 +53,15 @@ void ParseJob::execute()
     }
 
 }
-void ParseJob::jobCompleteCallback()
-{
-    std::cout << "Job " << this->getUniqueID() << std::endl;
-    int numFiles = jobErrors.size(); 
-    std::cout << "\tNum File Entries: " << numFiles << std::endl; 
+// void ParseJob::jobCompleteCallback()
+// {
+//     std::cout << "Job " << this->getUniqueID() << std::endl;
+//     int numFiles = jobErrors.size(); 
+//     std::cout << "\tNum File Entries: " << numFiles << std::endl; 
 
-    for(auto itr = jobErrors.begin(); itr != jobErrors.end(); ++itr)
-    {
-        std::cout << "\t\tFile: " << itr->first << "\n\t\t\tNumErrors: " << itr->second.size() << std::endl; 
-    }
+//     for(auto itr = jobErrors.begin(); itr != jobErrors.end(); ++itr)
+//     {
+//         std::cout << "\t\tFile: " << itr->first << "\n\t\t\tNumErrors: " << itr->second.size() << std::endl; 
+//     }
   
-}
+// }

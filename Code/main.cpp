@@ -34,7 +34,7 @@ int main(int argc, char *argv[] )
 
     std::vector<Job*> jobs; 
 
-for(int i = 1; i < argc; i++)
+    for(int i = 1; i < argc; i++)
     {
         CompileJob* cjb = new CompileJob(0xFFFFFFFF, 1); 
         cjb->target = argv[i]; 
